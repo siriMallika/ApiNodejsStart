@@ -1,5 +1,6 @@
 
 const MongoClient = require('mongodb').MongoClient;
+//assert เป็นการเทสว่าข้อมูลที่เรารับถูกต้องรึป่าว
 const assert = require('assert');
 
 // Connection URL
@@ -19,6 +20,7 @@ client.connect(function(err, client) {
   const db = client.db(dbName);
 
   // Insert a single document
+  //ตารางชื่อ  inserts 
   db.collection('inserts').insertOne({a:1}, function(err, r) {
     assert.equal(null, err);
     assert.equal(1, r.insertedCount);
