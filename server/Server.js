@@ -20,6 +20,21 @@ class Server {
         this.app.get('/kku', (req, res) => {
             res.send('Hello KKU');
         })
+
+        this.app.post('/student', (req,res) => {
+            let MongoDb = require('../db/Mongodb');
+            let db = new MongoDb({dbName: 'comedkku', collectionName:'students'});
+ 
+            db.Connect((isConnected) => {
+                db.Insert(req.body, (isInserted) =>  {
+                    console.log(isInserted);
+                    db.Close();
+                    res.send({"status": "Success"});
+                })
+            })
+        })
+ 
+ 
     }
  }
  
